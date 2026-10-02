@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="340" viewBox="0 0 1200 340" role="img" aria-label="VerdantPERT: Engineering configuration / dependencies / project schedules">
+ <rect width="1200" height="340" rx="18" fill="#102331"/><path d="M850 0V340M930 0V340M1010 0V340M1090 0V340M780 70H1200M780 150H1200M780 230H1200M780 310H1200" stroke="#244554" stroke-width="1"/>
+ <circle cx="1010" cy="150" r="88" fill="none" stroke="#5de0b5" stroke-width="2"/><circle cx="1010" cy="150" r="42" fill="none" stroke="#5de0b5" stroke-width="2"/><path d="M898 150H1122M1010 38V262" stroke="#5de0b5" stroke-width="2"/>
+ <rect x="48" y="48" width="5" height="34" fill="#5de0b5"/><text x="70" y="73" fill="#5de0b5" font-family="Arial,sans-serif" font-size="18" letter-spacing="3">MATLAB ENGINEERING WORKFLOW SYSTEM</text>
+ <text x="48" y="159" fill="#f1f6f8" font-family="Arial,sans-serif" font-size="45" font-weight="bold">VerdantPERT</text>
+ <text x="48" y="207" fill="#bdced8" font-family="Arial,sans-serif" font-size="22">Engineering configuration / dependencies / project schedules</text><text x="48" y="284" fill="#7e9cae" font-family="Arial,sans-serif" font-size="17">CHRISTINANTONY / ENGINEERING AUTOMATION</text></svg>
