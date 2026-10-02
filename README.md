@@ -15,7 +15,19 @@ Engineering projects repeat similar phases, but the dependencies change with the
 - Longest-path extraction, near-critical tasks with positive slack up to a default two-day threshold, and name-based milestones.
 - MATLAB configuration UI, network plot, and Gantt-style visualization.
 
-**Status:** recovered prototype with 23 MATLAB files. Algorithms and UI were inspected, but MATLAB runtime execution has not been verified in this portfolio build. Some UI controls are present without affecting scheduling; see [limitations](docs/limitations.md).
+**Status:** recovered prototype with 23 MATLAB files. The console pipeline (`main.m` and everything it calls) has been executed unchanged under GNU Octave 8.4 with a small stand-in for MATLAB's `digraph`; the figures below are from that run. MATLAB itself and the `uifigure` configuration UI have not been run. Some UI controls are present without affecting scheduling; see [limitations](docs/limitations.md).
+
+## The supplied scenario, computed
+
+`src/main.m` defines 40 spiral and 8 horn antennas with an enclosure. Run through the recovered code, that is 27 tasks and a 123-day schedule. The critical path runs through the spiral prototype stream into the enclosure; the spiral production stream is near-critical with two days of float.
+
+![Gantt chart of the 27 tasks: critical path in red, near-critical in orange, slack shown as dashed outlines, milestones as diamonds](assets/gantt.png)
+
+![Dependency network, layered left to right, critical path highlighted](assets/network.png)
+
+![Octave console output of main.m: schedule summary, slack, critical path, near-critical tasks and milestones](assets/console-output.png)
+
+*How these were made: `tools/run_octave.sh` runs the recovered `src/*.m` files under Octave (with `tools/octave-compat/` standing in for `digraph`, `toposort`, `predecessors`, `successors`, `adjacency` and `contains`) and exports the computed schedule; `tools/plot_schedule.py` draws the Gantt and network from those numbers with the same colour rules as `main.m`. MATLAB's own graph plot and Gantt figure are not reproduced pixel for pixel. Note the milestone quirk visible in the console output: `DesignFreeze` and `ProductionRelease` take the last antenna's value (horn, day 58 and 70), since `extractMilestones` overwrites the field per antenna; see [limitations](docs/limitations.md).*
 
 ## Workflow and architecture
 
@@ -60,6 +72,15 @@ main                  % 40 spiral and 8 horn antennas, enclosure required
 ```
 
 The older `archive/setupVerdantPERT.m` generates different versions of key files and should not be used to initialize this repository.
+
+### Run without MATLAB (GNU Octave)
+
+```sh
+sh tools/run_octave.sh out            # runs src/main.m, writes out/schedule.csv, edges.csv, milestones.csv, main_console.txt
+python3 tools/plot_schedule.py out assets   # assets/gantt.png and assets/network.png (needs matplotlib)
+```
+
+Octave has no `digraph`; `tools/octave-compat/` provides the handful of graph calls the code makes. The plotting section at the end of `main.m` and `VerdantPERTApp.m` still need MATLAB.
 
 ## Scheduling equations
 

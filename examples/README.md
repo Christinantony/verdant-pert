@@ -19,4 +19,8 @@ flowchart LR
 
 Expected total duration: **6 days**. Expected longest path: Start → Design → Procure → Assemble. Run `toy_schedule.m` with `src` on the MATLAB path and compare its output with this table.
 
+The same example run through the recovered `pertEngine.m` and `computeSlackPERT.m` under GNU Octave (see `tools/run_octave.sh`) reproduces the table:
+
+![Octave output of the toy schedule: ES, EF, LS, LF and slack for the four tasks, total 6 days](toy_schedule_output.png)
+
 The original `src/main.m` contains a larger supplied scenario: 40 spiral antennas, 8 horn antennas, and an enclosure. Its runtime duration is not asserted here.
